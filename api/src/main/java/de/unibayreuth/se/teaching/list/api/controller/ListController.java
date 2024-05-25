@@ -6,10 +6,12 @@ import de.unibayreuth.se.teaching.list.business.ports.Value;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,6 +27,12 @@ public class ListController {
                 .map(this::toDto)
                 .toList()
         );
+    }
+
+    @DeleteMapping(value = "/list")
+    public ResponseEntity<List<ListElementDto>> clearList() {
+        listService.clearList();
+        return ResponseEntity.ok(new ArrayList<>());
     }
 
     @PostMapping(value = "/list")
