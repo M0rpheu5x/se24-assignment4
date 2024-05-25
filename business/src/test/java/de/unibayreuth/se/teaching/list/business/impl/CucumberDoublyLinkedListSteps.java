@@ -38,6 +38,11 @@ public class CucumberDoublyLinkedListSteps {
         values.forEach(list::append);
         arrayFromValues = values.stream().mapToDouble(Double::doubleValue).toArray();
     }
+    @Given("^a list with the following elements:$")
+    public void aListWithTheFollowingElements(List<Double> values) {
+        values.forEach(list::append);
+        arrayFromValues = values.stream().mapToDouble(Double::doubleValue).toArray();
+    }
 
     // When -----------------------------------------------------------------------
 
@@ -55,6 +60,10 @@ public class CucumberDoublyLinkedListSteps {
     @When("^I invert the list$")
     public void iInvertTheList() {
         logger.info("%s not implemented yet.".formatted(Thread.currentThread().getStackTrace()[1].getMethodName()));
+    }
+    @When("^I insert an element with value (\\d+.\\d+)$")
+    public void iInsertAnElementWithValue(double value) {
+        list.insert(value);
     }
 
     // Then -----------------------------------------------------------------------
